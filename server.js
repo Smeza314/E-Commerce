@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const sequelize = require('sequelize')
 // import sequelize connection
