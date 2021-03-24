@@ -9,23 +9,45 @@ router.get('/categories', (req, res) => {
   Category.findAll({
     include: Product
   })
+    .then(categories => res.json(categories))
+    .catch(err => console.log(err))
 })
 
 router.get('/categories/:id', (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
+  Category.findOne({
+    where: {id: req.params.body},
+    include: Product
+  })
 })
 
 router.post('/categories', (req, res) => {
   // create a new category
+  Category.create({
+    id: req.body.id,
+    category_name: req.body.category_name
+  })
+  .then(categories => res.json(categories))
+  .catch(err => console.log(err))
 })
 
 router.put('/categories/:id', (req, res) => {
   // update a category by its `id` value
+  Category.update(req.body, { 
+    where: {id: req.params.id} 
+  })
+    .then(() => res.sendStatus(200))
+    .catch(err => console.log(err))
 })
 
 router.delete('/categories/:id', (req, res) => {
   // delete a category by its `id` value
+  Category.destroy({
+    where: {id: req.params.id}
+   })
+    .then(() => res.sendStatus(200))
+    .catch(err => console.log(err))
 })
 
 module.exports = router
