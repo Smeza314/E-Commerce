@@ -7,7 +7,6 @@ router.get('/categories', (req, res) => {
   // find all categories
   // be sure to include its associated Products
   Category.findAll({
-    where: {uid: req.params.body},
     include: Product
   })
     .then(categories => res.json(categories))
