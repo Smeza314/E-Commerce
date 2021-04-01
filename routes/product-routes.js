@@ -19,7 +19,7 @@ router.get('/products/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
   Product.findone({
-    where: {id: req.params.body},
+    where: {id: req.params.id},
     include: [Category, Tag]
   })
     .then(products => res.json(products))
@@ -103,7 +103,7 @@ router.put('/products/:id', (req, res) => {
 router.delete('/products/:id', (req, res) => {
   // delete one product by its `id` value
   Product.destroy({
-    where: {id: req.params.body}
+    where: {id: req.params.id}
   })
     .then(() => res.sendStatus(200))
     .catch(err => console.log(err))
