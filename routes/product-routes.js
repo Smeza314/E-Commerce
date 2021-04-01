@@ -10,7 +10,7 @@ router.get('/products', (req, res) => {
   Product.findAll({
     include: [Category, Tag]
   })
-    .then(products => res.json(products))
+    .then(product => res.json(product))
     .catch(err => console.log(err))
 })
 
@@ -22,7 +22,7 @@ router.get('/products/:id', (req, res) => {
     where: {id: req.params.id},
     include: [Category, Tag]
   })
-    .then(products => res.json(products))
+    .then(product => res.json(product))
     .catch(err => console.log(err))
 })
 
