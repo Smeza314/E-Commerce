@@ -10,7 +10,7 @@ router.get('/products', (req, res) => {
   Product.findAll({
     include: [Category, Tag]
   })
-    .then(product => res.json(product))
+    .then(products => res.json(products))
     .catch(err => console.log(err))
 })
 
@@ -18,8 +18,8 @@ router.get('/products', (req, res) => {
 router.get('/products/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
-  Product.findone({
-    where: {id: req.params.id},
+  Product.findOne({
+    where: { id: req.params.id },
     include: [Category, Tag]
   })
     .then(product => res.json(product))
