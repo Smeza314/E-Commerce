@@ -20,6 +20,8 @@ router.get('/categories/:id', (req, res) => {
     where: { id: req.params.id },
     include: Product
   })
+  .then(category => res.json(category))
+  .catch(err => console.log(err))
 })
 
 router.post('/categories', (req, res) => {
